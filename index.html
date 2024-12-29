@@ -111,25 +111,28 @@
 }
 
 
-    /* Container untuk fitur yang bisa digeser */
-    .features {
-      display: flex;
-      overflow-x: auto; /* Membuat fitur bisa digeser ke kiri/kanan */
-      gap: 20px;
-      padding: 20px 0;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch; /* Untuk mobile */
-    }
+   .features {
+  display: flex;
+  overflow-x: auto; /* Aktifkan scroll horizontal */
+  scroll-behavior: smooth; /* Animasi scroll */
+  gap: 20px; /* Jarak antar kotak fitur */
+  padding: 0 20px; /* Spasi di sisi kiri dan kanan */
+}
 
-    .feature {
-      flex: 0 0 auto;
-      width: 250px; /* Tentukan lebar untuk setiap item fitur */
-      background: #e8eaf6;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+.features::-webkit-scrollbar {
+  display: none; /* Sembunyikan scrollbar */
+}
+
+.feature {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  min-width: 250px; /* Lebar minimum kotak fitur */
+  flex: 0 0 auto; /* Pastikan kotak tidak menyusut */
+}
 
     .feature img {
       width: 80px;
