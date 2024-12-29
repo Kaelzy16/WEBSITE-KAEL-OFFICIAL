@@ -10,11 +10,11 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #4facfe, #00f2fe);
+      background: #f4f6f8;
       color: #333;
     }
     header {
-      background-color: #003580;
+      background-color: #1a237e; /* Biru Tua */
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -23,7 +23,7 @@
     nav {
       display: flex;
       justify-content: center;
-      background-color: #004ba0;
+      background-color: #283593; /* Biru Sedikit Lebih Terang */
       padding: 10px 0;
     }
     nav a {
@@ -31,9 +31,10 @@
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
+      transition: color 0.3s;
     }
     nav a:hover {
-      color: #ffd700;
+      color: #ffca28; /* Warna Kuning Emas */
     }
     .container {
       max-width: 1200px;
@@ -47,9 +48,17 @@
       text-align: center;
       padding: 50px 20px;
     }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 4px solid #1a237e; /* Bingkai Biru Tua */
+    }
     .hero h1 {
       font-size: 36px;
       margin-bottom: 20px;
+      color: #1a237e; /* Biru Tua */
     }
     .hero p {
       font-size: 18px;
@@ -62,25 +71,43 @@
     }
     .feature {
       flex: 1;
-      background: #f9f9f9;
+      background: #e8eaf6; /* Biru Muda Lembut */
       padding: 20px;
       border-radius: 10px;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .feature img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid #1a237e; /* Bingkai Biru Tua */
     }
     .feature h3 {
       font-size: 20px;
       margin-bottom: 15px;
+      color: #1a237e; /* Biru Tua */
     }
     .feature p {
       font-size: 14px;
-      color: #777;
+      color: #555;
     }
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #003580;
+      background-color: #1a237e; /* Biru Tua */
       color: #fff;
       margin-top: 20px;
+    }
+    footer a {
+      color: #ffca28; /* Kuning Emas */
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -96,26 +123,31 @@
   </nav>
   <div class="container">
     <div class="hero">
+      <!-- Tambahkan Gambar Hero -->
+      <img src="https://via.placeholder.com/1200x400" alt="Hero Image">
       <h1>Selamat Datang di Website Top-Up!</h1>
       <p>Mudah, cepat, dan aman untuk memenuhi kebutuhan Anda.</p>
     </div>
     <div class="features">
       <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Feature 1">
         <h3>Proses Cepat</h3>
         <p>Top-up selesai dalam hitungan detik tanpa kendala.</p>
       </div>
       <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Feature 2">
         <h3>Aman & Terpercaya</h3>
         <p>Transaksi Anda dilindungi dengan sistem keamanan tinggi.</p>
       </div>
       <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Feature 3">
         <h3>Support 24/7</h3>
         <p>Kami siap membantu kapan saja Anda butuhkan.</p>
       </div>
     </div>
   </div>
   <footer>
-    &copy; 2024 Website Top-Up. Semua Hak Dilindungi.
+    &copy; 2024 Website Top-Up. Semua Hak Dilindungi. | <a href="#">Kebijakan Privasi</a>
   </footer>
 </body>
 </html>
