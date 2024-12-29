@@ -14,6 +14,7 @@
       padding: 0;
       background: #f4f6f8;
       color: #333;
+      scroll-behavior: smooth; /* Untuk membuat scroll lebih halus */
     }
     header {
       background-color: #1a237e; /* Biru Tua */
@@ -161,12 +162,13 @@
     Website Top-Up Online
   </header>
   <nav>
-    <a href="#">Beranda</a>
-    <a href="#">Layanan</a>
-    <a href="#">Cara Top-Up</a>
-    <a href="#">Kontak</a>
+    <!-- Tautan Anchor untuk Navigasi -->
+    <a href="#home">Beranda</a>
+    <a href="#products">Layanan</a>
+    <a href="#contact">Kontak</a>
   </nav>
-  <div class="container">
+
+  <div class="container" id="home">
     <div class="hero">
       <!-- Tambahkan Gambar Hero -->
       <img src="https://via.placeholder.com/1200x400" alt="Hero Image">
@@ -192,7 +194,7 @@
     </div>
 
     <!-- Galeri Produk -->
-    <div class="gallery">
+    <div class="gallery" id="products">
       <h2>Produk Kami</h2>
       <div class="gallery-grid">
         <div class="product-card">
@@ -216,7 +218,7 @@
   </div>
 
   <!-- Ikon Kontak -->
-  <div class="contact-icons">
+  <div class="contact-icons" id="contact">
     <a href="https://wa.me/1234567890" target="_blank">
       <i class="fab fa-whatsapp"></i> <!-- Ikon WhatsApp -->
     </a>
