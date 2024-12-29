@@ -23,7 +23,7 @@
     nav {
       display: flex;
       justify-content: center;
-      background-color: #283593; /* Biru Sedikit Lebih Terang */
+      background-color: #283593;
       padding: 10px 0;
     }
     nav a {
@@ -34,7 +34,7 @@
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #ffca28; /* Warna Kuning Emas */
+      color: #ffca28;
     }
     .container {
       max-width: 1200px;
@@ -53,56 +53,61 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
-      border: 4px solid #1a237e; /* Bingkai Biru Tua */
+      border: 4px solid #1a237e;
     }
     .hero h1 {
       font-size: 36px;
       margin-bottom: 20px;
-      color: #1a237e; /* Biru Tua */
+      color: #1a237e;
     }
     .hero p {
       font-size: 18px;
       color: #555;
     }
-    .features {
-      display: flex;
-      gap: 20px;
-      margin-top: 30px;
+    .products {
+      margin-top: 40px;
     }
-    .feature {
-      flex: 1;
-      background: #e8eaf6; /* Biru Muda Lembut */
-      padding: 20px;
+    .products h2 {
+      text-align: center;
+      color: #1a237e;
+      margin-bottom: 20px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: #e8eaf6;
+      padding: 15px;
       border-radius: 10px;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .feature img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
       margin-bottom: 15px;
-      border-radius: 50%;
-      border: 3px solid #1a237e; /* Bingkai Biru Tua */
     }
-    .feature h3 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #1a237e; /* Biru Tua */
+    .product-card h3 {
+      font-size: 18px;
+      color: #1a237e;
+      margin-bottom: 10px;
     }
-    .feature p {
+    .product-card p {
       font-size: 14px;
       color: #555;
     }
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #1a237e; /* Biru Tua */
+      background-color: #1a237e;
       color: #fff;
       margin-top: 20px;
     }
     footer a {
-      color: #ffca28; /* Kuning Emas */
+      color: #ffca28;
       text-decoration: none;
       font-weight: bold;
     }
@@ -123,26 +128,37 @@
   </nav>
   <div class="container">
     <div class="hero">
-      <!-- Tambahkan Gambar Hero -->
       <img src="https://via.placeholder.com/1200x400" alt="Hero Image">
       <h1>Selamat Datang di Website Top-Up!</h1>
       <p>Mudah, cepat, dan aman untuk memenuhi kebutuhan Anda.</p>
     </div>
-    <div class="features">
-      <div class="feature">
-        <img src="https://via.placeholder.com/80" alt="Feature 1">
-        <h3>Proses Cepat</h3>
-        <p>Top-up selesai dalam hitungan detik tanpa kendala.</p>
-      </div>
-      <div class="feature">
-        <img src="https://via.placeholder.com/80" alt="Feature 2">
-        <h3>Aman & Terpercaya</h3>
-        <p>Transaksi Anda dilindungi dengan sistem keamanan tinggi.</p>
-      </div>
-      <div class="feature">
-        <img src="https://via.placeholder.com/80" alt="Feature 3">
-        <h3>Support 24/7</h3>
-        <p>Kami siap membantu kapan saja Anda butuhkan.</p>
+    <div class="products">
+      <h2>Produk Kami</h2>
+      <div class="product-grid">
+        <!-- Produk 1 -->
+        <div class="product-card">
+          <img src="https://via.placeholder.com/250x150" alt="Produk 1">
+          <h3>Produk 1</h3>
+          <p>Deskripsi singkat produk ini.</p>
+        </div>
+        <!-- Produk 2 -->
+        <div class="product-card">
+          <img src="https://via.placeholder.com/250x150" alt="Produk 2">
+          <h3>Produk 2</h3>
+          <p>Deskripsi singkat produk ini.</p>
+        </div>
+        <!-- Produk 3 -->
+        <div class="product-card">
+          <img src="https://via.placeholder.com/250x150" alt="Produk 3">
+          <h3>Produk 3</h3>
+          <p>Deskripsi singkat produk ini.</p>
+        </div>
+        <!-- Produk 4 -->
+        <div class="product-card">
+          <img src="https://via.placeholder.com/250x150" alt="Produk 4">
+          <h3>Produk 4</h3>
+          <p>Deskripsi singkat produk ini.</p>
+        </div>
       </div>
     </div>
   </div>
