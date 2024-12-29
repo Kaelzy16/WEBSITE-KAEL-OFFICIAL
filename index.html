@@ -130,6 +130,47 @@
       border: 3px solid #1a237e;
     }
 
+/* Styling untuk Feature Section */
+#features {
+  padding: 50px 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+#features h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1a237e; /* Biru Tua */
+}
+
+.feature-container {
+  display: flex; /* Menggunakan flexbox untuk menata elemen secara horizontal */
+  gap: 20px; /* Jarak antar fitur */
+  overflow-x: auto; /* Menambahkan scrollbar horizontal jika konten lebih lebar dari kontainer */
+  white-space: nowrap; /* Mencegah elemen terbungkus dalam baris baru */
+  padding: 0 20px; /* Memberikan padding pada sisi kiri dan kanan */
+}
+
+.feature-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  flex-shrink: 0; /* Mencegah kartu mengecil saat ukuran kontainer lebih kecil */
+}
+
+.feature-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
     .gallery {
       margin-top: 40px;
     }
@@ -256,19 +297,20 @@
       <p>Tempatnya Hosting Murah Berkualitas dan Aman.</p>
     </div>
    </div>
+   <section id="features">
       <h1>PARTNER DAN OWNER KAEL</h1>
-    <div class="features">
-      <div class="feature">
+    <div class="feature-container">
+      <div class="feature-card">
         <img src="https://i.postimg.cc/6qbmCTR0/Kaelofficial.jpg" alt="Feature 1">
         <h3>KAEL OFFICIAL</h3>
         <a href="https://wa.me/6282396700834" target="_blank" class="btn-whatsapp">SAVE</a>
       </div>
-      <div class="feature">
+      <div class="feature-card">
         <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Feature 2">
         <h3>- OWN/PT</h3>
         <a href="https://wa.me/6282396700834" target="_blank" class="btn-whatsapp">SAVE</a>
       </div>
-      <div class="feature">
+      <div class="feature-card">
         <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Feature 3">
         <h3>- OWN/PT</h3>
         <a href="https://wa.me/6282396700834" target="_blank" class="btn-whatsapp">SAVE</a>
