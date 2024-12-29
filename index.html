@@ -97,48 +97,72 @@
   background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
 }
 
-    /* Styling untuk Feature Section */
-#features {
-  padding: 50px 0;
-  background-color: #f4f4f4;
-  text-align: center;
-}
+    /* Menambahkan Judul Fitur */
+    .features-title {
+      text-align: center;
+      font-size: 28px;
+      margin-top: 40px;
+      color: #1a237e;
+      font-weight: bold;
+    }
 
-#features h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #1a237e; /* Biru Tua */
-}
+    /* Container untuk fitur yang bisa digeser */
+    .features {
+      display: flex;
+      overflow-x: auto; /* Membuat fitur bisa digeser ke kiri/kanan */
+      gap: 20px;
+      padding: 20px 0;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* Untuk mobile */
+    }
 
-.feature-container {
-  display: flex; /* Menggunakan flexbox untuk menata elemen secara horizontal */
-  gap: 20px; /* Jarak antar fitur */
-  overflow-x: auto; /* Menambahkan scrollbar horizontal jika konten lebih lebar dari kontainer */
-  white-space: nowrap; /* Mencegah elemen terbungkus dalam baris baru */
-  padding: 0 20px; /* Memberikan padding pada sisi kiri dan kanan */
-}
+    .feature {
+      flex: 0 0 auto;
+      width: 250px; /* Tentukan lebar untuk setiap item fitur */
+      background: #e8eaf6;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.feature-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  text-align: center;
-  flex-shrink: 0; /* Mencegah kartu mengecil saat ukuran kontainer lebih kecil */
-}
+    .feature img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid #1a237e;
+    }
 
-.feature-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
+    .feature h3 {
+      font-size: 18px;
+      color: #1a237e;
+      margin-bottom: 10px;
+    }
 
-.feature-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
+    .whatsapp-btn {
+      background-color: #25d366;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background-color: #128c7e;
+    }
+
+    .whatsapp-btn i {
+      margin-right: 8px;
+    }
 
 /* Styling untuk Button WhatsApp */
 .btn-whatsapp {
@@ -285,42 +309,54 @@
     </div>
    </div>
    
-      <!-- Feature Section -->
-<section id="features">
-  <h2>Fitur Kami</h2>
-  <div class="feature-container">
-    <!-- Feature 1 -->
-    <div class="feature-card">
-      <img src="https://i.postimg.cc/abcd1234/produk1.jpg" alt="Produk 1">
-      <h3>Fitur 1</h3>
-      <a href="https://wa.me/1234567890" target="_blank" class="btn-whatsapp">Hubungi Fitur 1 via WhatsApp</a>
+          <!-- Menambahkan Judul Fitur -->
+    <div class="features-title">
+      <h2>Fitur Kami</h2>
     </div>
-    <!-- Feature 2 -->
-    <div class="feature-card">
-      <img src="https://i.postimg.cc/abcd1234/produk2.jpg" alt="Produk 2">
-      <h3>Fitur 2</h3>
-      <a href="https://wa.me/1234567891" target="_blank" class="btn-whatsapp">Hubungi Fitur 2 via WhatsApp</a>
+
+    <!-- Fitur Geser Horizontal -->
+    <div class="features">
+      <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Fitur 1">
+        <h3>Proses Cepat</h3>
+        <p>Top-up selesai dalam hitungan detik tanpa kendala.</p>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
+      <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Fitur 2">
+        <h3>Aman & Terpercaya</h3>
+        <p>Transaksi Anda dilindungi dengan sistem keamanan tinggi.</p>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
+      <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Fitur 3">
+        <h3>Support 24/7</h3>
+        <p>Kami siap membantu kapan saja Anda butuhkan.</p>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
+      <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Fitur 4">
+        <h3>Pengalaman User-Friendly</h3>
+        <p>Interface yang mudah digunakan, cocok untuk pemula.</p>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
+      <div class="feature">
+        <img src="https://via.placeholder.com/80" alt="Fitur 5">
+        <h3>Hemat Waktu</h3>
+        <p>Top-up cepat dan tanpa antrian.</p>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
     </div>
-    <!-- Feature 3 -->
-    <div class="feature-card">
-      <img src="https://i.postimg.cc/abcd1234/produk3.jpg" alt="Produk 3">
-      <h3>Fitur 3</h3>
-      <a href="https://wa.me/1234567892" target="_blank" class="btn-whatsapp">Hubungi Fitur 3 via WhatsApp</a>
-    </div>
-    <!-- Feature 4 -->
-    <div class="feature-card">
-      <img src="https://i.postimg.cc/abcd1234/produk4.jpg" alt="Produk 4">
-      <h3>Fitur 4</h3>
-      <a href="https://wa.me/1234567893" target="_blank" class="btn-whatsapp">Hubungi Fitur 4 via WhatsApp</a>
-    </div>
-    <!-- Feature 5 -->
-    <div class="feature-card">
-      <img src="https://i.postimg.cc/abcd1234/produk5.jpg" alt="Produk 5">
-      <h3>Fitur 5</h3>
-      <a href="https://wa.me/1234567894" target="_blank" class="btn-whatsapp">Hubungi Fitur 5 via WhatsApp</a>
-    </div>
-  </div>
-</section>
 
     <!-- Galeri Produk -->
     <div class="gallery" id="products">
