@@ -42,6 +42,12 @@
             width: 200px;
             height: 200px;
         }
+        .qris-url {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #007bff;
+            word-wrap: break-word;
+        }
         .loader {
             display: none;
             text-align: center;
@@ -68,7 +74,10 @@
         <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
 
         <!-- Gambar QRIS -->
-        <img id="qrisImage" class="qris-image" src="" alt="QRIS Payment">
+        <img id="qrisImage" class="qris-image" src="https://i.postimg.cc/W4hqVf4Y/Kaelofficial.jpg" alt="QRIS Payment">
+
+        <!-- URL QRIS -->
+        <p class="qris-url" id="qrisUrl"></p>
 
         <!-- Tombol Bayar -->
         <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
@@ -82,9 +91,12 @@
 
 <script>
     // Konfigurasi API OkeConnect dan QRIS OrderKuota
-    const okeConnectApiUrl = 'https://api.okeconnect.com/generate-qris';  // Ganti dengan endpoint API OkeConnect
-    const apiToken = 'your_api_token_here';  // Ganti dengan API token OkeConnect Anda
+    const okeConnectApiUrl = 'https://h2h.okeconnect.com/trx';  // Ganti dengan endpoint API OkeConnect
+    const apiToken = '660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57';  // Ganti dengan API token OkeConnect Anda
     const fileDownloadUrl = 'https://yourwebsite.com/files/';  // URL dasar untuk file yang dapat diunduh
+
+    // QRIS URL default jika tidak dihasilkan oleh API
+    const defaultQrisUrl = '00020101021126670016COM.NOBUBANK.WWW01189360050300000879140214029128691745450303UMI51440014ID.CO.QRIS.WWW0215ID20232522089880303UMI5204511153033605802ID5912CILOXX STORE6008LUMAJANG61056731162070703A0163041082';  // URL default QRIS yang dapat digunakan jika API gagal memberikan URL QRIS
 
     // Ambil data dari URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -117,9 +129,12 @@
         })
         .then(response => response.json())
         .then(data => {
+            // Jika data QRIS URL ada, tampilkan, jika tidak tampilkan URL default
+            const qrisUrl = data.qrisUrl || defaultQrisUrl;
             if (data.qrisImageUrl) {
                 // Menampilkan QRIS jika berhasil
                 document.getElementById('qrisImage').src = data.qrisImageUrl;
+                document.getElementById('qrisUrl').textContent = `QRIS URL: ${qrisUrl}`;
                 // Arahkan pengguna ke halaman untuk verifikasi pembayaran
                 setTimeout(() => window.location.href = `pembayaran-verify.html?orderID=${orderID}&productName=${productName}&productPrice=${productPrice}`, 2000);
             } else {
