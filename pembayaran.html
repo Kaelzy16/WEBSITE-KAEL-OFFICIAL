@@ -6,47 +6,70 @@
     <title>Pembayaran QRIS</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #f1f5f8;
+            color: #fff;
         }
         .container {
             max-width: 600px;
             margin: 50px auto;
-            background-color: white;
+            background-color: #003366; /* Biru tua */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         .header {
             text-align: center;
             margin-bottom: 20px;
         }
-        .btn-bayar {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #007bff;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .header h2 {
+            font-size: 28px;
+            font-weight: bold;
         }
-        .btn-bayar:hover {
-            background-color: #0056b3;
+        .header p {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .payment-info {
+            margin-top: 30px;
+        }
+        .payment-info p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .payment-info strong {
+            font-weight: bold;
         }
         .qris-image {
-            margin-top: 20px;
+            display: block;
+            margin: 30px auto;
             width: 200px;
             height: 200px;
         }
         .qris-url {
             margin-top: 10px;
             font-size: 16px;
-            color: #007bff;
-            word-wrap: break-word;
+            text-align: center;
+            color: #b3cde0;
+        }
+        .btn-bayar {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #004080; /* Biru tua */
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn-bayar:hover {
+            background-color: #0066cc;
         }
         .loader {
             display: none;
@@ -64,25 +87,24 @@
 <div class="container">
     <div class="header">
         <h2>Konfirmasi Pembayaran</h2>
-        <p>Silakan pilih metode pembayaran QRIS untuk menyelesaikan transaksi.</p>
+        <p>Silakan pilih metode pembayaran QRIS untuk menyelesaikan transaksi Anda.</p>
     </div>
 
-    <!-- Informasi transaksi -->
     <div class="payment-info">
-        <p><strong>Nama Barang:</strong> <span id="productName"></span></p>
-        <p><strong>Harga:</strong> Rp <span id="productPrice"></span></p>
-        <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
+        <p><strong>Nama Barang:</strong> <span id="productName">Smartphone</span></p>
+        <p><strong>Harga:</strong> Rp <span id="productPrice">1.500.000</span></p>
+        <p><strong>ID Pesanan:</strong> <span id="orderID">ORD12345</span></p>
 
-        <!-- Gambar QRIS -->
-        <img id="qrisImage" class="qris-image" src="https://i.postimg.cc/W4hqVf4Y/Kaelofficial.jpg" alt="QRIS Payment">
+        <!-- QRIS Image -->
+        <img id="qrisImage" class="qris-image" src="" alt="QRIS Image">
 
-        <!-- URL QRIS -->
-        <p class="qris-url" id="qrisUrl"></p>
+        <!-- QRIS URL -->
+        <p id="qrisUrl" class="qris-url"></p>
 
         <!-- Tombol Bayar -->
         <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
 
-        <!-- Loader (Untuk menunggu pemrosesan API) -->
+        <!-- Loader -->
         <div class="loader" id="loader">
             <img src="https://example.com/loading.gif" alt="Loading...">
         </div>
@@ -91,12 +113,9 @@
 
 <script>
     // Konfigurasi API OkeConnect dan QRIS OrderKuota
-    const okeConnectApiUrl = 'https://h2h.okeconnect.com/trx';  // Ganti dengan endpoint API OkeConnect
-    const apiToken = '660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57';  // Ganti dengan API token OkeConnect Anda
-    const fileDownloadUrl = 'https://yourwebsite.com/files/';  // URL dasar untuk file yang dapat diunduh
-
-    // QRIS URL default jika tidak dihasilkan oleh API
-    const defaultQrisUrl = '00020101021126670016COM.NOBUBANK.WWW01189360050300000879140214029128691745450303UMI51440014ID.CO.QRIS.WWW0215ID20232522089880303UMI5204511153033605802ID5912CILOXX STORE6008LUMAJANG61056731162070703A0163041082';  // URL default QRIS yang dapat digunakan jika API gagal memberikan URL QRIS
+    const okeConnectApiUrl = 'https://api.okeconnect.com/generate-qris';  // Ganti dengan endpoint API OkeConnect
+    const apiToken = 'your_api_token_here';  // Ganti dengan API token OkeConnect Anda
+    const defaultQrisUrl = 'https://qris.example.com';  // URL default QRIS jika API gagal memberikan URL QRIS
 
     // Ambil data dari URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -114,7 +133,7 @@
         // Menampilkan loader sementara menunggu API response
         document.getElementById('loader').style.display = 'block';
 
-        // Memanggil API OkeConnect untuk mendapatkan QRIS (Sesuaikan endpoint sesuai dokumentasi OkeConnect)
+        // Memanggil API OkeConnect untuk mendapatkan QRIS
         fetch(okeConnectApiUrl, {
             method: 'POST',
             headers: {
@@ -129,13 +148,11 @@
         })
         .then(response => response.json())
         .then(data => {
-            // Jika data QRIS URL ada, tampilkan, jika tidak tampilkan URL default
             const qrisUrl = data.qrisUrl || defaultQrisUrl;
             if (data.qrisImageUrl) {
                 // Menampilkan QRIS jika berhasil
                 document.getElementById('qrisImage').src = data.qrisImageUrl;
                 document.getElementById('qrisUrl').textContent = `QRIS URL: ${qrisUrl}`;
-                // Arahkan pengguna ke halaman untuk verifikasi pembayaran
                 setTimeout(() => window.location.href = `pembayaran-verify.html?orderID=${orderID}&productName=${productName}&productPrice=${productPrice}`, 2000);
             } else {
                 alert('Terjadi kesalahan dalam menghasilkan QRIS');
