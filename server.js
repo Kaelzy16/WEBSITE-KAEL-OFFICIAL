@@ -17,14 +17,14 @@ app.post('/generate-qris', async (req, res) => {
       order_id: order_id
     }, {
       headers: {
-        'Authorization': 'Bearer YOUR_OKECONNECT_API_KEY'
+        'Authorization': 'Bearer 660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57' // Ganti dengan API Key OkeConnect Anda
       }
     });
 
     // Mengirimkan URL QRIS yang didapatkan dari OkeConnect
     res.json({
       status: 'success',
-      qris_url: response.data.qris_url
+      qris_url: response.data.qris_url // URL QRIS untuk pembayaran
     });
   } catch (error) {
     console.error(error);
@@ -40,12 +40,12 @@ app.get('/check-payment-status', async (req, res) => {
     const response = await axios.get(`https://api.okeconnect.com/check-payment-status`, {
       params: { order_id: order_id },
       headers: {
-        'Authorization': 'Bearer 660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57'
+        'Authorization': 'Bearer 660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57' // Ganti dengan API Key OkeConnect Anda
       }
     });
 
     res.json({
-      status: response.data.status
+      status: response.data.status // Status pembayaran
     });
   } catch (error) {
     console.error(error);
@@ -59,7 +59,6 @@ app.post('/send-file', async (req, res) => {
 
   try {
     // Kirim file setelah status pembayaran berhasil
-    // Misalnya mengirim file PDF atau dokumen ke pengguna
     console.log(`Mengirim file untuk order_id: ${order_id}`);
     
     // Simulasikan pengiriman file

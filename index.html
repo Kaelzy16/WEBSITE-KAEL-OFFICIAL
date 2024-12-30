@@ -381,19 +381,13 @@
   <img src="https://via.placeholder.com/200" alt="Produk 1">
   <h3>Nama Produk</h3>
   <p>Harga: Rp50.000</p>
-  <button class="btn" onclick="generateQRIS()">Beli</button>
-  </div>
-
-  <div class="qris-container" id="qris-container">
-    <h3>Scan QRIS untuk Pembayaran</h3>
-    <img id="qris-image" src="" alt="QRIS Payment">
-    <p id="status"></p>
+ <button class="btn" onclick="generateQRIS()">Beli</button>
   </div>
 
   <script>
     function generateQRIS() {
       // Harga produk yang akan dikirim ke API OkeConnect
-      const amount = 100000; // Misal, Rp 100.000
+      const amount = 50000; // Misal, Rp 50.000
       const orderId = 'ORDER-' + new Date().getTime();
 
       // Menampilkan QRIS setelah klik beli
