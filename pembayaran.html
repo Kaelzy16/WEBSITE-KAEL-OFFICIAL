@@ -10,12 +10,12 @@
             margin: 0;
             padding: 0;
             background-color: #f1f5f8;
-            color: #fff;
+            color: #333;
         }
         .container {
             max-width: 600px;
             margin: 50px auto;
-            background-color: #003366; /* Biru tua */
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -32,33 +32,28 @@
             font-size: 16px;
             margin-top: 5px;
         }
-        .payment-info {
-            margin-top: 30px;
-        }
-        .payment-info p {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-        .payment-info strong {
-            font-weight: bold;
-        }
         .qris-image {
             display: block;
             margin: 30px auto;
-            width: 200px;
-            height: 200px;
+            width: 200px; /* QRIS 1:1 ratio */
+            height: 200px; /* QRIS 1:1 ratio */
         }
-        .qris-url {
-            margin-top: 10px;
-            font-size: 16px;
+        .payment-info {
+            margin-top: 30px;
             text-align: center;
-            color: #b3cde0;
+        }
+        .payment-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .payment-info strong {
+            font-weight: bold;
         }
         .btn-bayar {
             display: block;
             width: 100%;
             padding: 15px;
-            background-color: #004080; /* Biru tua */
+            background-color: #28a745; /* Hijau */
             color: #fff;
             font-size: 18px;
             border: none;
@@ -66,10 +61,14 @@
             cursor: pointer;
             text-align: center;
             margin-top: 20px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s ease-in-out;
         }
         .btn-bayar:hover {
-            background-color: #0066cc;
+            background-color: #218838; /* Hijau gelap */
+        }
+        .btn-bayar:active {
+            background-color: #b5e7a0; /* Hijau muda */
+            transform: scale(0.98);
         }
         .loader {
             display: none;
@@ -90,16 +89,14 @@
         <p>Silakan pilih metode pembayaran QRIS untuk menyelesaikan transaksi Anda.</p>
     </div>
 
+    <!-- QRIS Image -->
+    <img id="qrisImage" class="qris-image" src="" alt="QRIS Image">
+
+    <!-- Informasi Transaksi -->
     <div class="payment-info">
         <p><strong>Nama Barang:</strong> <span id="productName">Smartphone</span></p>
         <p><strong>Harga:</strong> Rp <span id="productPrice">1.500.000</span></p>
         <p><strong>ID Pesanan:</strong> <span id="orderID">ORD12345</span></p>
-
-        <!-- QRIS Image -->
-        <img id="qrisImage" class="qris-image" src="" alt="QRIS Image">
-
-        <!-- QRIS URL -->
-        <p id="qrisUrl" class="qris-url"></p>
 
         <!-- Tombol Bayar -->
         <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
@@ -152,7 +149,6 @@
             if (data.qrisImageUrl) {
                 // Menampilkan QRIS jika berhasil
                 document.getElementById('qrisImage').src = data.qrisImageUrl;
-                document.getElementById('qrisUrl').textContent = `QRIS URL: ${qrisUrl}`;
                 setTimeout(() => window.location.href = `pembayaran-verify.html?orderID=${orderID}&productName=${productName}&productPrice=${productPrice}`, 2000);
             } else {
                 alert('Terjadi kesalahan dalam menghasilkan QRIS');
