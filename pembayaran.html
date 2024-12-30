@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-download:hover {
+            background-color: #218838;
+        }
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .loader {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .loader img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Pembayaran Berhasil</h2>
+        <p>Terima kasih telah melakukan pembayaran! Klik tombol di bawah ini untuk mengunduh file yang Anda beli.</p>
+    </div>
+
+    <!-- Status Pembayaran -->
+    <div class="message">
+        <p><strong>Nama Barang:</strong> <span id="productName"></span></p>
+        <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
+        <p><strong>Harga:</strong> Rp <span id="productPrice"></span></p>
+    </div>
+
+    <!-- Tombol Download -->
+    <div id="downloadSection" style="display: none;">
+        <a id="downloadButton" class="btn-download" href="" download>Unduh File</a>
+    </div>
+
+    <!-- Loader (Untuk menunggu pemrosesan) -->
+    <div class="loader" id="loader">
+        <img src="https://example.com/loading.gif" alt="Loading...">
+    </div>
+</div>
+
+<script>
+    // URL API untuk memverifikasi pembayaran berhasil dan mengambil file
+    const paymentVerificationUrl = 'https://api.okeconnect.com/verify-payment';  // Endpoint untuk memverifikasi status pembayaran
+    const apiToken = 'your_api_token_here';  // Ganti dengan API token Anda
+    const fileDownloadUrl = 'https://yourwebsite.com/files/';  // URL dasar untuk file yang dapat diunduh (misalnya, file yang dibeli)
+
+    // Ambil data dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('productName');
+    const productPrice = urlParams.get('productPrice');
+    const orderID = urlParams.get('orderID');
+
+    // Tampilkan data transaksi
+    document.getElementById('productName').textContent = productName;
+    document.getElementById('productPrice').textContent = productPrice;
+    document.getElementById('orderID').textContent = orderID;
+
+    // Verifikasi pembayaran
+    function verifyPayment() {
+        // Menampilkan loader sementara menunggu verifikasi
+        document.getElementById('loader').style.display = 'block';
+
+        // Mengirim permintaan untuk memverifikasi status pembayaran
+        fetch(paymentVerificationUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiToken}`
+            },
+            body: JSON.stringify({
+                orderID: orderID
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Jika pembayaran berhasil, tampilkan tombol unduh
+                const fileUrl = fileDownloadUrl + data.fileName;  // Gantilah dengan nama file yang sesuai
+                document.getElementById('downloadButton').href = fileUrl;
+                document.getElementById('downloadSection').style.display = 'block';
+            } else {
+                alert('Pembayaran gagal atau tidak ditemukan.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan dalam memverifikasi pembayaran.');
+        })
+        .finally(() => {
+            // Menyembunyikan loader setelah verifikasi selesai
+            document.getElementById('loader').style.display = 'none';
+        });
+    }
+
+    // Memverifikasi pembayaran setelah halaman dimuat
+    window.onload = function() {
+        verifyPayment();
+    };
+</script>
+
+</body>
+</html>
