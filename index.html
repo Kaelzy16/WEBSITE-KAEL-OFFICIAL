@@ -381,35 +381,88 @@
   <img src="https://via.placeholder.com/200" alt="Produk 1">
   <h3>Nama Produk</h3>
   <p>Harga: Rp50.000</p>
-  <button class="buy-btn" onclick="startPayment('123', 50000, 'Produk 1')">Beli</button>
-</div>
+  <button class="btn" onclick="generateQRIS()">Beli</button>
+  </div>
 
-<script>
-    // Fungsi untuk memulai pembayaran
-    function startPayment(productId, price, productName) {
-      fetch('https://your-heroku-app.herokuapp.com/api/payment', {
+  <div class="qris-container" id="qris-container">
+    <h3>Scan QRIS untuk Pembayaran</h3>
+    <img id="qris-image" src="" alt="QRIS Payment">
+    <p id="status"></p>
+  </div>
+
+  <script>
+    function generateQRIS() {
+      // Harga produk yang akan dikirim ke API OkeConnect
+      const amount = 100000; // Misal, Rp 100.000
+      const orderId = 'ORDER-' + new Date().getTime();
+
+      // Menampilkan QRIS setelah klik beli
+      document.getElementById('qris-container').style.display = 'block';
+
+      // Mengirim permintaan ke server untuk mendapatkan QRIS
+      fetch('/generate-qris', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ productId, price, productName }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.paymentUrl) {
-            // Arahkan pengguna ke halaman pembayaran QRIS
-            window.location.href = data.paymentUrl;
-          } else {
-            alert('Gagal memulai pembayaran.');
-          }
+        body: JSON.stringify({
+          amount: amount,
+          order_id: orderId
         })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Terjadi kesalahan.');
-        });
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          document.getElementById('qris-image').src = data.qris_url; // Menampilkan QRIS
+          listenForPayment(orderId); // Mulai memantau pembayaran
+        } else {
+          alert('Gagal menghasilkan QRIS');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+
+    // Fungsi untuk memonitor status pembayaran
+    function listenForPayment(orderId) {
+      const statusElement = document.getElementById('status');
+      const interval = setInterval(() => {
+        fetch(`/check-payment-status?order_id=${orderId}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'PAID') {
+              statusElement.innerText = 'Pembayaran berhasil!';
+              clearInterval(interval);
+              // Kirim file otomatis menggunakan OkeConnect API
+              sendFileAfterPayment(orderId);
+            } else if (data.status === 'FAILED') {
+              statusElement.innerText = 'Pembayaran gagal!';
+              clearInterval(interval);
+            }
+          })
+          .catch(error => console.error('Error checking payment status:', error));
+      }, 5000); // Mengecek setiap 5 detik
+    }
+
+    // Fungsi untuk mengirim file setelah pembayaran berhasil
+    function sendFileAfterPayment(orderId) {
+      fetch('/send-file', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ order_id: orderId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          alert('File berhasil dikirim!');
+        } else {
+          alert('Gagal mengirim file');
+        }
+      })
+      .catch(error => console.error('Error sending file:', error));
     }
   </script>
-
 
         <div class="product-card">
           <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 2">

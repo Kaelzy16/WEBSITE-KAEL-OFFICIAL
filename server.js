@@ -2,48 +2,74 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const app = express();
+const port = 3000;
 
-// Middleware untuk parse JSON
 app.use(bodyParser.json());
 
-// Endpoint untuk memulai pembayaran QRIS
-app.post('/api/payment', async (req, res) => {
-  const { productId, price, productName } = req.body;
+// Endpoint untuk menghasilkan QRIS
+app.post('/generate-qris', async (req, res) => {
+  const { amount, order_id } = req.body;
 
   try {
-    // Menghubungi OkeConnect API untuk membuat pembayaran QRIS
-    const response = await axios.post('https://api.okeconnect.com/payment', {
-      amount: price, // Jumlah pembayaran
-      description: productName, // Nama produk
-      payment_method: 'QRIS', // Metode pembayaran QRIS
-      callback_url: 'https://your-heroku-app.herokuapp.com/api/payment/callback', // Ganti dengan URL callback Anda
+    // Kirim permintaan ke OkeConnect API untuk generate QRIS
+    const response = await axios.post('https://api.okeconnect.com/generate-qris', {
+      amount: amount,
+      order_id: order_id
     }, {
       headers: {
-        'Authorization': 'Bearer YOUR_OKECONNECT_API_KEY', // Ganti dengan API key OkeConnect Anda
+        'Authorization': 'Bearer YOUR_OKECONNECT_API_KEY'
       }
     });
 
-    // Mengembalikan URL pembayaran QRIS yang dapat diakses oleh pengguna
-    res.json({ paymentUrl: response.data.payment_url });
+    // Mengirimkan URL QRIS yang didapatkan dari OkeConnect
+    res.json({
+      status: 'success',
+      qris_url: response.data.qris_url
+    });
   } catch (error) {
-    console.error('Error creating payment:', error.message);
-    res.status(500).json({ error: 'Gagal memulai pembayaran' });
+    console.error(error);
+    res.json({ status: 'error', message: 'Gagal menghasilkan QRIS' });
   }
 });
 
-// Endpoint callback untuk menerima status pembayaran
-app.post('/api/payment/callback', (req, res) => {
-  const { status, productId } = req.body;
+// Endpoint untuk mengecek status pembayaran
+app.get('/check-payment-status', async (req, res) => {
+  const { order_id } = req.query;
 
-  if (status === 'PAID') {
-    console.log(`Pembayaran berhasil untuk produk ID: ${productId}`);
-    // Lakukan tindakan lainnya, seperti mengirimkan file atau mengupdate status produk
+  try {
+    const response = await axios.get(`https://api.okeconnect.com/check-payment-status`, {
+      params: { order_id: order_id },
+      headers: {
+        'Authorization': 'Bearer 660184317351393382185708OKCT8A16C7953A9F99296894CD77272AFD57'
+      }
+    });
+
+    res.json({
+      status: response.data.status
+    });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: 'error', message: 'Gagal memeriksa status pembayaran' });
   }
-
-  res.status(200).send('Callback diterima');
 });
 
-// Jalankan server
-app.listen(3000, () => {
-  console.log('Server berjalan di http://localhost:3000');
+// Endpoint untuk mengirim file setelah pembayaran berhasil
+app.post('/send-file', async (req, res) => {
+  const { order_id } = req.body;
+
+  try {
+    // Kirim file setelah status pembayaran berhasil
+    // Misalnya mengirim file PDF atau dokumen ke pengguna
+    console.log(`Mengirim file untuk order_id: ${order_id}`);
+    
+    // Simulasikan pengiriman file
+    res.json({ status: 'success' });
+  } catch (error) {
+    console.error(error);
+    res.json({ status: 'error', message: 'Gagal mengirim file' });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server berjalan di http://localhost:${port}`);
 });
