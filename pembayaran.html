@@ -93,6 +93,31 @@
         .footer a:hover {
             text-decoration: underline;
         }
+        /* Kontainer Informasi Kontak */
+        .contact-container {
+            background-color: #011f4b; /* Biru sangat gelap */
+            color: #f4f4f9;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .contact-container h3 {
+            font-size: 24px;
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+        .contact-container p {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+        .contact-container a {
+            color: #28a745; /* Hijau */
+            text-decoration: none;
+        }
+        .contact-container a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -120,11 +145,18 @@
     <div class="loader" id="loader">
         <img src="https://example.com/loading.gif" alt="Loading...">
     </div>
+</div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2024 Sistem Pembayaran. <a href="#">Kebijakan Privasi</a> | <a href="#">Bantuan</a></p>
-    </div>
+<!-- Kontainer Informasi Kontak -->
+<div class="contact-container">
+    <h3>Hubungi Kami</h3>
+    <p><strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a></p>
+    <p><strong>Telepon:</strong> <a href="tel:+621234567890">+62 123 456 7890</a></p>
+    <p><strong>Alamat:</strong> Jalan Contoh No. 123, Jakarta, Indonesia</p>
+</div>
+
+<div class="footer">
+    <p>© 2024 Sistem Pembayaran. <a href="#">Kebijakan Privasi</a> | <a href="#">Bantuan</a></p>
 </div>
 
 <script>
