@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-download:hover {
+            background-color: #218838;
+        }
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .loader {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .loader img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Pembayaran Berhasil</h2>
+        <p>Terima kasih telah melakukan pembayaran! Klik tombol di bawah ini untuk mengunduh file yang Anda beli.</p>
+    </div>
+
+    <!-- Status Pembayaran -->
+    <div class="message">
+        <p><strong>Nama Barang:</strong> <span id="productName"></span></p>
+        <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
+        <p><strong>Harga:</strong> Rp <span id="productPrice"></span></p>
+    </div>
+
+    <!-- Tombol Download -->
+    <div id="downloadSection" style="display: none;">
+        <a id="downloadButton" class="btn-download" href="" download>Unduh File</a>
+    </div>
+
+    <!-- Loader (Untuk menunggu pemrosesan) -->
+    <div class="loader" id="loader">
+        <img src="https://example.com/loading.gif" alt="Loading...">
+    </div>
+</div>
+
+<script>
+    const paymentVerificationUrl = 'https://api.okeconnect.com/verify-payment';  // Endpoint API untuk verifikasi pembayaran
+    const apiToken = 'your_api_token_here';  // Ganti dengan API token Anda
+    const orderID = new URLSearchParams(window.location.search).get('orderID');
+    const productName = new URLSearchParams(window.location.search).get('productName');
+    const productPrice = new URLSearchParams(window.location.search).get('productPrice');
+
+    // Menampilkan data transaksi
+    document.getElementById('productName').textContent = productName;
+    document.getElementById('productPrice').textContent = productPrice;
+    document.getElementById('orderID').textContent = orderID;
+
+    // Verifikasi pembayaran
+    function verifikasiPembayaran() {
+        document.getElementById('loader').style.display = 'block';
+
+        fetch(paymentVerificationUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiToken}`  // Header untuk autentikasi API
+            },
+            body: JSON.stringify({
+                orderID: orderID
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.paymentStatus === 'success') {
+                document.getElementById('downloadSection').style.display = 'block';
+                document.getElementById('downloadButton').href = `https://yourwebsite.com/files/${orderID}.pdf`; // Ganti URL download sesuai dengan file yang diunduh
+            } else {
+                alert('Pembayaran gagal, silakan coba lagi.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Verifikasi pembayaran gagal.');
+        })
+        .finally(() => {
+            document.getElementById('loader').style.display = 'none';
+        });
+    }
+
+    // Verifikasi pembayaran saat halaman dimuat
+    window.onload = verifikasiPembayaran;
+</script>
+
+</body>
+</html>

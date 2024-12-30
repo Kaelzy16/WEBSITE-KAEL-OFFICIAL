@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran Berhasil</title>
+    <title>Pembayaran QRIS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,25 +23,24 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .btn-download {
+        .btn-bayar {
             display: block;
             width: 100%;
             padding: 15px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
         }
-        .btn-download:hover {
-            background-color: #218838;
+        .btn-bayar:hover {
+            background-color: #0056b3;
         }
-        .message {
-            text-align: center;
-            font-size: 18px;
+        .qris-image {
             margin-top: 20px;
+            width: 200px;
+            height: 200px;
         }
         .loader {
             display: none;
@@ -58,33 +57,34 @@
 
 <div class="container">
     <div class="header">
-        <h2>Pembayaran Berhasil</h2>
-        <p>Terima kasih telah melakukan pembayaran! Klik tombol di bawah ini untuk mengunduh file yang Anda beli.</p>
+        <h2>Konfirmasi Pembayaran</h2>
+        <p>Silakan pilih metode pembayaran QRIS untuk menyelesaikan transaksi.</p>
     </div>
 
-    <!-- Status Pembayaran -->
-    <div class="message">
+    <!-- Informasi transaksi -->
+    <div class="payment-info">
         <p><strong>Nama Barang:</strong> <span id="productName"></span></p>
-        <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
         <p><strong>Harga:</strong> Rp <span id="productPrice"></span></p>
-    </div>
+        <p><strong>ID Pesanan:</strong> <span id="orderID"></span></p>
 
-    <!-- Tombol Download -->
-    <div id="downloadSection" style="display: none;">
-        <a id="downloadButton" class="btn-download" href="" download>Unduh File</a>
-    </div>
+        <!-- Gambar QRIS -->
+        <img id="qrisImage" class="qris-image" src="" alt="QRIS Payment">
 
-    <!-- Loader (Untuk menunggu pemrosesan) -->
-    <div class="loader" id="loader">
-        <img src="https://example.com/loading.gif" alt="Loading...">
+        <!-- Tombol Bayar -->
+        <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
+
+        <!-- Loader (Untuk menunggu pemrosesan API) -->
+        <div class="loader" id="loader">
+            <img src="https://example.com/loading.gif" alt="Loading...">
+        </div>
     </div>
 </div>
 
 <script>
-    // URL API untuk memverifikasi pembayaran berhasil dan mengambil file
-    const paymentVerificationUrl = 'https://api.okeconnect.com/verify-payment';  // Endpoint untuk memverifikasi status pembayaran
-    const apiToken = 'your_api_token_here';  // Ganti dengan API token Anda
-    const fileDownloadUrl = 'https://yourwebsite.com/files/';  // URL dasar untuk file yang dapat diunduh (misalnya, file yang dibeli)
+    // Konfigurasi API OkeConnect dan QRIS OrderKuota
+    const okeConnectApiUrl = 'https://api.okeconnect.com/generate-qris';  // Ganti dengan endpoint API OkeConnect
+    const apiToken = 'your_api_token_here';  // Ganti dengan API token OkeConnect Anda
+    const fileDownloadUrl = 'https://yourwebsite.com/files/';  // URL dasar untuk file yang dapat diunduh
 
     // Ambil data dari URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -97,47 +97,44 @@
     document.getElementById('productPrice').textContent = productPrice;
     document.getElementById('orderID').textContent = orderID;
 
-    // Verifikasi pembayaran
-    function verifyPayment() {
-        // Menampilkan loader sementara menunggu verifikasi
+    // Fungsi untuk memproses pembayaran dan mendapatkan QRIS dari OkeConnect
+    function prosesPembayaran() {
+        // Menampilkan loader sementara menunggu API response
         document.getElementById('loader').style.display = 'block';
 
-        // Mengirim permintaan untuk memverifikasi status pembayaran
-        fetch(paymentVerificationUrl, {
+        // Memanggil API OkeConnect untuk mendapatkan QRIS (Sesuaikan endpoint sesuai dokumentasi OkeConnect)
+        fetch(okeConnectApiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiToken}`
+                'Authorization': `Bearer ${apiToken}`  // Menambahkan header Authorization dengan API token
             },
             body: JSON.stringify({
-                orderID: orderID
+                orderID: orderID,
+                amount: productPrice,
+                paymentMethod: 'qris'
             })
         })
         .then(response => response.json())
         .then(data => {
-            if (data.status === 'success') {
-                // Jika pembayaran berhasil, tampilkan tombol unduh
-                const fileUrl = fileDownloadUrl + data.fileName;  // Gantilah dengan nama file yang sesuai
-                document.getElementById('downloadButton').href = fileUrl;
-                document.getElementById('downloadSection').style.display = 'block';
+            if (data.qrisImageUrl) {
+                // Menampilkan QRIS jika berhasil
+                document.getElementById('qrisImage').src = data.qrisImageUrl;
+                // Arahkan pengguna ke halaman untuk verifikasi pembayaran
+                setTimeout(() => window.location.href = `pembayaran-verify.html?orderID=${orderID}&productName=${productName}&productPrice=${productPrice}`, 2000);
             } else {
-                alert('Pembayaran gagal atau tidak ditemukan.');
+                alert('Terjadi kesalahan dalam menghasilkan QRIS');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Terjadi kesalahan dalam memverifikasi pembayaran.');
+            alert('Gagal mengambil QRIS');
         })
         .finally(() => {
-            // Menyembunyikan loader setelah verifikasi selesai
+            // Menyembunyikan loader setelah selesai
             document.getElementById('loader').style.display = 'none';
         });
     }
-
-    // Memverifikasi pembayaran setelah halaman dimuat
-    window.onload = function() {
-        verifyPayment();
-    };
 </script>
 
 </body>
