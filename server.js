@@ -13,17 +13,17 @@ app.post('/api/payment', async (req, res) => {
   try {
     // Menghubungi OkeConnect API untuk membuat pembayaran QRIS
     const response = await axios.post('https://api.okeconnect.com/payment', {
-      amount: price,
-      description: productName,
-      payment_method: 'QRIS', // Menggunakan QRIS sebagai metode pembayaran
-      callback_url: 'https://your-heroku-app.herokuapp.com/api/payment/callback', // Ganti dengan URL callback yang benar
+      amount: price, // Jumlah pembayaran
+      description: productName, // Nama produk
+      payment_method: 'QRIS', // Metode pembayaran QRIS
+      callback_url: 'https://your-heroku-app.herokuapp.com/api/payment/callback', // Ganti dengan URL callback Anda
     }, {
       headers: {
         'Authorization': 'Bearer YOUR_OKECONNECT_API_KEY', // Ganti dengan API key OkeConnect Anda
       }
     });
 
-    // Kirimkan URL pembayaran QRIS
+    // Mengembalikan URL pembayaran QRIS yang dapat diakses oleh pengguna
     res.json({ paymentUrl: response.data.payment_url });
   } catch (error) {
     console.error('Error creating payment:', error.message);
@@ -31,13 +31,13 @@ app.post('/api/payment', async (req, res) => {
   }
 });
 
-// Endpoint callback untuk menerima notifikasi status pembayaran
+// Endpoint callback untuk menerima status pembayaran
 app.post('/api/payment/callback', (req, res) => {
   const { status, productId } = req.body;
 
   if (status === 'PAID') {
     console.log(`Pembayaran berhasil untuk produk ID: ${productId}`);
-    // Anda bisa melakukan aksi lain seperti mengirim file atau mengupdate status produk
+    // Lakukan tindakan lainnya, seperti mengirimkan file atau mengupdate status produk
   }
 
   res.status(200).send('Callback diterima');

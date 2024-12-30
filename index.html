@@ -385,30 +385,30 @@
 </div>
 
 <script>
-  // Fungsi untuk memulai pembayaran
-  function startPayment(productId, price, productName) {
-    fetch('http://localhost:3000/api/payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ productId, price, productName }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.paymentUrl) {
-          // Arahkan pengguna ke halaman pembayaran QRIS
-          window.location.href = data.paymentUrl;
-        } else {
-          alert('Gagal memulai pembayaran.');
-        }
+    // Fungsi untuk memulai pembayaran
+    function startPayment(productId, price, productName) {
+      fetch('https://your-heroku-app.herokuapp.com/api/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId, price, productName }),
       })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan.');
-      });
-  }
-</script>
+        .then(response => response.json())
+        .then(data => {
+          if (data.paymentUrl) {
+            // Arahkan pengguna ke halaman pembayaran QRIS
+            window.location.href = data.paymentUrl;
+          } else {
+            alert('Gagal memulai pembayaran.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Terjadi kesalahan.');
+        });
+    }
+  </script>
 
 
         <div class="product-card">
