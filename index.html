@@ -385,6 +385,7 @@
 </div>
 
 <script>
+  // Fungsi untuk memulai pembayaran
   function startPayment(productId, price, productName) {
     fetch('http://localhost:3000/api/payment', {
       method: 'POST',
@@ -396,7 +397,7 @@
       .then(response => response.json())
       .then(data => {
         if (data.paymentUrl) {
-          // Arahkan pengguna ke URL pembayaran
+          // Arahkan pengguna ke halaman pembayaran QRIS
           window.location.href = data.paymentUrl;
         } else {
           alert('Gagal memulai pembayaran.');
@@ -408,6 +409,7 @@
       });
   }
 </script>
+
 
         <div class="product-card">
           <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 2">
