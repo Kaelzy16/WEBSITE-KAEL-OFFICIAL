@@ -15,19 +15,29 @@
         .container {
             width: 90%;
             max-width: 650px;
-            margin: 50px auto; /* Menambahkan margin otomatis agar terpusat */
+            margin: 0 auto 30px; /* Memberikan jarak di bagian bawah */
             background-color: #023e8a; /* Biru gelap */
             border-radius: 15px;
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-        .header h2 {
-            font-size: 34px;
+        .text-container {
+            width: 90%;
+            max-width: 650px;
+            margin: -15px auto 30px; /* Menempel dengan kontainer sebelumnya */
+            background-color: #0353a4; /* Warna biru lebih terang */
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .header h2, .contact-header h2 {
+            font-size: 24px;
             color: #f39c12; /* Warna kuning keemasan */
             font-weight: bold;
         }
-        .header p {
+        .header p, .contact-header p {
             font-size: 18px;
             color: #ecf0f1;
             margin-top: 10px;
@@ -93,43 +103,20 @@
         .footer a:hover {
             text-decoration: underline;
         }
-        .contact-container {
-            width: 90%;
-            max-width: 650px;
-            margin: 50px auto; /* Menambahkan margin otomatis agar terpusat */
-            background-color: #023e8a; /* Biru gelap */
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        .contact-container h2 {
-            font-size: 34px;
-            color: #f39c12; /* Warna kuning keemasan */
-            font-weight: bold;
-            text-align: center;
-        }
-        .contact-container p {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #ecf0f1;
-        }
-        .contact-container a {
-            color: #28a745; /* Hijau */
-            text-decoration: none;
-        }
-        .contact-container a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
 
-<div class="container">
+<!-- Kontainer Teks Konfirmasi Pembayaran -->
+<div class="text-container">
     <div class="header">
         <h2>Konfirmasi Pembayaran</h2>
-        <p>Silakan lanjutkan pembayaran Anda menggunakan QRIS.</p>
+        <p>Silakan lanjutkan pembayaran Anda menggunakan QRIS di bawah ini.</p>
     </div>
+</div>
 
+<!-- Kontainer Utama -->
+<div class="container">
     <!-- QRIS Image -->
     <img id="qrisImage" class="qris-image" src="" alt="QRIS Image">
 
@@ -149,12 +136,21 @@
     </div>
 </div>
 
+<!-- Kontainer Teks Hubungi Kami -->
+<div class="text-container">
+    <div class="contact-header">
+        <h2>Hubungi Kami</h2>
+        <p>Butuh bantuan? Anda dapat menghubungi kami melalui informasi di bawah ini.</p>
+    </div>
+</div>
+
 <!-- Kontainer Informasi Kontak -->
-<div class="contact-container">
-    <h2>Hubungi Kami</h2>
-    <p><strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a></p>
-    <p><strong>Telepon:</strong> <a href="tel:+621234567890">+62 123 456 7890</a></p>
-    <p><strong>Alamat:</strong> Jalan Contoh No. 123, Jakarta, Indonesia</p>
+<div class="container">
+    <div class="payment-info">
+        <p><strong>Email:</strong> <a href="mailto:support@example.com" style="color: #28a745;">support@example.com</a></p>
+        <p><strong>Telepon:</strong> <a href="tel:+621234567890" style="color: #28a745;">+62 123 456 7890</a></p>
+        <p><strong>Alamat:</strong> Jalan Contoh No. 123, Jakarta, Indonesia</p>
+    </div>
 </div>
 
 <div class="footer">
