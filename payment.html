@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .qris-image {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Halaman Pembayaran</h1>
+
+    <p>Nama Barang: <span id="productName"></span></p>
+    <p>Harga: Rp <span id="productPrice"></span></p>
+    <p>ID Pesanan: <span id="orderID"></span></p>
+
+    <h3>QRIS Pembayaran</h3>
+    <img id="qrisImage" class="qris-image" src="https://example.com/path-to-your-qris-image.png" alt="QRIS">
+
+</div>
+
+<script>
+    // Mendapatkan parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('productName');
+    const productPrice = urlParams.get('productPrice');
+    const orderID = urlParams.get('orderID');
+
+    // Menampilkan data transaksi
+    document.getElementById('productName').textContent = productName;
+    document.getElementById('productPrice').textContent = productPrice;
+    document.getElementById('orderID').textContent = orderID;
+</script>
+
+</body>
+</html>
