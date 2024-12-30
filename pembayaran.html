@@ -9,66 +9,55 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8; /* Latar belakang terang agar kontras dengan elemen biru */
+            background: linear-gradient(to bottom, #003366, #00509E); /* Gradasi biru tua ke biru lebih cerah */
             color: #fff;
         }
         .container {
-            max-width: 700px;
+            max-width: 600px;
             margin: 50px auto;
-            background-color: #002f6c; /* Biru tua */
+            background-color: #1e2a47; /* Biru gelap */
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            border: 3px solid #006ab6; /* Menambahkan border biru yang lebih terang */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .header {
             text-align: center;
             margin-bottom: 20px;
+            font-family: 'Helvetica', sans-serif;
         }
         .header h2 {
             font-size: 32px;
             font-weight: bold;
-            color: #fff;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            color: #ffcc00; /* Warna kuning untuk kontras */
         }
         .header p {
             font-size: 18px;
-            margin-top: 5px;
-            color: #b3cde0;
+            margin-top: 10px;
+            color: #f1f1f1;
         }
         .qris-image {
             display: block;
             margin: 30px auto;
             width: 250px; /* QRIS 1:1 ratio */
             height: 250px; /* QRIS 1:1 ratio */
-            border: 5px solid #006ab6; /* Border biru terang di sekitar gambar QRIS */
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .payment-info {
-            margin-top: 30px;
-            color: #e0f0ff;
+            text-align: left;
+            margin-top: 20px;
+            width: 100%;
+            color: #f1f1f1;
+            padding-left: 20px;
+            border-left: 3px solid #00509E; /* Garis biru di kiri */
         }
         .payment-info p {
-            font-size: 20px;
+            font-size: 18px;
             margin: 10px 0;
         }
         .payment-info strong {
             font-weight: bold;
-            font-size: 22px;
-            color: #fff;
-        }
-        .payment-info .data {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 10px;
-            background-color: #004a91; /* Biru lebih gelap untuk area data transaksi */
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .payment-info .data span {
-            font-size: 18px;
-            color: #b3cde0;
         }
         .btn-bayar {
             display: block;
@@ -76,12 +65,12 @@
             padding: 15px;
             background-color: #28a745; /* Hijau */
             color: #fff;
-            font-size: 22px;
+            font-size: 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
             transition: background-color 0.3s, transform 0.2s ease-in-out;
         }
         .btn-bayar:hover {
@@ -100,18 +89,13 @@
             width: 50px;
             height: 50px;
         }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 16px;
-            color: #b3cde0;
+        /* Animasi untuk elemen loading */
+        @keyframes loading {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .footer a {
-            color: #006ab6;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
+        .loader img {
+            animation: loading 1.5s infinite linear;
         }
     </style>
 </head>
@@ -119,8 +103,8 @@
 
 <div class="container">
     <div class="header">
-        <h2>Konfirmasi Pembayaran QRIS</h2>
-        <p>Silakan lakukan pembayaran dengan menggunakan QRIS untuk menyelesaikan transaksi Anda.</p>
+        <h2>Konfirmasi Pembayaran</h2>
+        <p>Silakan pilih metode pembayaran QRIS untuk menyelesaikan transaksi Anda.</p>
     </div>
 
     <!-- QRIS Image -->
@@ -128,32 +112,18 @@
 
     <!-- Informasi Transaksi -->
     <div class="payment-info">
-        <div class="data">
-            <strong>Nama Barang:</strong>
-            <span id="productName">Smartphone</span>
-        </div>
-        <div class="data">
-            <strong>Harga:</strong>
-            <span id="productPrice">Rp 1.500.000</span>
-        </div>
-        <div class="data">
-            <strong>ID Pesanan:</strong>
-            <span id="orderID">ORD12345</span>
-        </div>
-
-        <!-- Tombol Bayar -->
-        <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
-
-        <!-- Loader -->
-        <div class="loader" id="loader">
-            <img src="https://example.com/loading.gif" alt="Loading...">
-        </div>
+        <p><strong>Nama Barang:</strong> <span id="productName">Smartphone</span></p>
+        <p><strong>Harga:</strong> Rp <span id="productPrice">1.500.000</span></p>
+        <p><strong>ID Pesanan:</strong> <span id="orderID">ORD12345</span></p>
     </div>
-</div>
 
-<!-- Footer -->
-<div class="footer">
-    <p>Untuk bantuan lebih lanjut, kunjungi <a href="#">FAQ</a> atau hubungi kami.</p>
+    <!-- Tombol Bayar -->
+    <button class="btn-bayar" onclick="prosesPembayaran()">Bayar Sekarang</button>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <img src="https://example.com/loading.gif" alt="Loading...">
+    </div>
 </div>
 
 <script>
