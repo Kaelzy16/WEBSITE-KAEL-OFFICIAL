@@ -97,6 +97,33 @@
   background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
 }
 
+/* Gaya untuk tombol */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #002366; /* Warna biru tua */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.1); /* Animasi saat hover */
+    }
+
+    .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+    }
+
 .features-section {
   margin: 50px 0;
   text-align: center;
@@ -421,6 +448,20 @@
       </div>
     </div>
   </div>
+
+<!-- Tombol WhatsApp -->
+  <div class="whatsapp-button" onclick="openWhatsApp()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  </div>
+
+  <script>
+    // Fungsi untuk membuka WhatsApp
+    function openWhatsApp() {
+      const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
+      const message = "Halo! Saya ingin bertanya."; // Ganti dengan pesan default
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
 
   <!-- Ikon Kontak -->
   <div class="contact-icons" id="contact">
