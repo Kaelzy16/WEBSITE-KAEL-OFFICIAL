@@ -450,19 +450,10 @@
   </div>
 
 <!-- Tombol WhatsApp -->
-  <div class="whatsapp-button" onclick="openWhatsApp()">
+  <div class="whatsapp-button" class="contact-icons" id="contact">
+    <a href="https://wa.me/6282396700833" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </div>
-
-  <script>
-    // Fungsi untuk membuka WhatsApp
-    function openWhatsApp() {
-      const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
-      const message = "Halo! Saya ingin bertanya."; // Ganti dengan pesan default
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-  </script>
 
   <!-- Ikon Kontak -->
   <div class="contact-icons" id="contact">
