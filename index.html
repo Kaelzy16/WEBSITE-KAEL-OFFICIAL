@@ -1,484 +1,159 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KAEL OFFICIAL WEBSITE</title>
-  <!-- Link ke Font Awesome untuk Ikon -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <title>Skyzopedia</title>
   <style>
-    /* Gaya Umum */
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset CSS */
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f6f8;
-      color: #333;
+      box-sizing: border-box;
     }
-
-    header {
-      background-color: #1a237e; /* Biru Tua */
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      background-color: #283593;
-      padding: 10px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffca28;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .hero img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      border: 4px solid #1a237e;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #1a237e;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #555;
-    }
-
-/* Styling untuk Button WhatsApp */
-.btn-whatsapp {
-  padding: 10px 20px;
-  background-color: #25D366; /* Warna hijau WhatsApp */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.btn-whatsapp:hover {
-  background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
-}
-
-/* Gaya untuk tombol */
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: #002366; /* Warna biru tua */
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .whatsapp-button:hover {
-      transform: scale(1.1); /* Efek saat hover */
-    }
-
-    .whatsapp-button i {
-      color: white; /* Warna ikon */
-      font-size: 24px; /* Ukuran ikon */
-    }
-
-.features-section {
-  margin: 50px 0;
-  text-align: center;
-}
-
-.features-title {
-  font-size: 28px;
-  color: #1a237e; /* Biru tua */
-  margin-bottom: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-
-   .features {
-  display: flex;
-  overflow-x: auto; /* Aktifkan scroll horizontal */
-  scroll-behavior: smooth; /* Animasi scroll */
-  gap: 20px; /* Jarak antar kotak fitur */
-  padding: 0 20px; /* Spasi di sisi kiri dan kanan */
-}
-
-.features::-webkit-scrollbar {
-  display: none; /* Sembunyikan scrollbar */
-}
-
-.feature {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  min-width: 250px; /* Lebar minimum kotak fitur */
-  flex: 0 0 auto; /* Pastikan kotak tidak menyusut */
-}
-
-    .feature img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border-radius: 50%;
-      border: 3px solid #1a237e;
-    }
-
-    .feature h3 {
-      font-size: 18px;
-      color: #1a237e;
-      margin-bottom: 10px;
-    }
-    
-    .save-btn {
-  background-color: #1a237e; /* Biru tua */
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-.save-btn:hover {
-  background-color: #3949ab; /* Biru lebih terang */
-}
-
-.save-btn:active {
-  background-color: #7986cb; /* Biru keputihan saat diklik */
-}
-
-    .whatsapp-btn {
-      background-color: #25d366;
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
       color: white;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-
-    .whatsapp-btn:hover {
-      background-color: #128c7e;
-    }
-
-    .whatsapp-btn i {
-      margin-right: 8px;
-    }
-
-/* Styling untuk Button WhatsApp */
-.btn-whatsapp {
-  padding: 10px 20px;
-  background-color: #25D366; /* Warna hijau WhatsApp */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.btn-whatsapp:hover {
-  background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
-}
-
-    .gallery {
-      margin-top: 40px;
-    }
-
-    .gallery h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #1a237e;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: #f9f9f9;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-card h3 {
-      font-size: 16px;
-      color: #1a237e;
-    }
-
-    /* Tombol Beli */
-    .product-card .btn-beli {
-      background-color: #1a237e; /* Biru Tua */
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .product-card .btn-beli:hover {
-      background-color: #283593; /* Biru Tua lebih terang */
-    }
-
-    .product-card .btn-beli:active {
-      background-color: #7986cb; /* Biru lebih terang saat diklik */
-      transform: scale(0.98); /* Efek sedikit mengecil saat tombol ditekan */
-    }
-
-    /* Kontak Ikon */
-    .contact-icons {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
-
-    .contact-icons a {
-      font-size: 30px;
-      color: #1a237e;
-      text-decoration: none;
-      transition: color 0.3s;
+    /* Background Animation */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
-
-    .contact-icons a:hover {
-      color: #ffca28;
-    }
-
-    footer {
+    /* Content */
+    .container {
       text-align: center;
-      padding: 20px;
-      background-color: #1a237e;
-      color: #fff;
-      margin-top: 20px;
     }
-
-    footer a {
-      color: #ffca28;
-      text-decoration: none;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin: 0 auto 20px;
+    }
+    h1 {
+      font-size: 24px;
       font-weight: bold;
     }
-
-    footer a:hover {
-      text-decoration: underline;
+    p {
+      font-size: 16px;
+      margin: 10px 0 30px;
     }
-
-    /* Mengatur Transisi Scroll */
-    html {
-      scroll-behavior: smooth;
+    .buttons a {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      width: 200px;
+      text-decoration: none;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .buttons a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <header>
-    Website Top-Up Online
-  </header>
-
-  <!-- Navigation Menu -->
-  <nav>
-    <a href="#home">Beranda</a>
-    <a href="#products">Layanan</a>
-    <a href="#contact">Kontak</a>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container" id="home">
-    <div class="hero">
-      <img src="https://i.postimg.cc/B6K6r1Z8/Kaelofficial.jpg" alt="Hero Image">
-      <h1>Website Kael Official</h1>
-      <p>Tempatnya Hosting Murah Berkualitas dan Aman.</p>
+  <div id="particles-js"></div>
+  <div class="container">
+    <img src="https://via.placeholder.com/100" alt="Avatar" class="avatar">
+    <h1>Skyzopedia</h1>
+    <p>Creator WhatsApp Bot & Web Developer</p>
+    <div class="buttons">
+      <a href="#">Rest API</a>
+      <a href="#">YouTube</a>
+      <a href="#">Contact</a>
+      <a href="#">Channel WhatsApp</a>
     </div>
-   </div>
-   
-    <!-- Fitur Geser Horizontal -->
-    <div class="features-section">
-  <h2 class="features-title">PARTNER DAN OWNER KAEL</h2>
-    <div class="features">
-      <div class="feature">
-        <img src="https://i.postimg.cc/6qbmCTR0/Kaelofficial.jpg" alt="Fitur 1">
-        <h3>KAEL OFFICIAL</h3>
-        <p>SAVE NOMOR DIBAWAH</p>
-         <button class="save-btn" onclick="window.open('https://wa.me/6282396700834', '_blank')">Save</button>
-      </div>
-      <div class="feature">
-        <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Fitur 2">
-        <h3>- OWN/PT</h3>
-        <p>SAVE NOMOR DIBAWAH</p>
-        <button class="save-btn" onclick="window.open('https://wa.me/6282396700834', '_blank')">Save</button>
-      </div>
-      <div class="feature">
-        <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Fitur 3">
-        <h3>- OWN/PT</h3>
-        <p>SAVE NOMOR DI BAWAH</p>
-        <button class="save-btn" onclick="window.open('https://wa.me/6282396700834', '_blank')">Save</button>
-      </div>
-      <div class="feature">
-        <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Fitur 4">
-        <h3>- OWN/PT</h3>
-        <p>SAVE NOMOR DIBAWAH</p>
-        <button class="save-btn" onclick="window.open('https://wa.me/6282396700834', '_blank')">Save</button>
-      </div>
-      <div class="feature">
-        <img src="https://i.postimg.cc/TY7KWxs3/Kaelofficial.jpg" alt="Fitur 5">
-        <h3>- OWN/PT</h3>
-        <p>SAVE NOMOR DIBAWAH</p>
-        <button class="save-btn" onclick="window.open('https://wa.me/6282396700834', '_blank')">Save</button>
-      </div>
-    </div>
-
-    <!-- Galeri Produk -->
-    <div class="gallery" id="products">
-      <h2>SCRIPT BOT WHATSAPP</h2>
-      <div class="gallery-grid">
-        <div class="product-card">
-  <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 1">
-  <h3>KAEL PUSH V1</h3>
-  <p>Rp15.000</p>
-<button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834'">Beli</button>
-        </div>
-        <div class="product-card">
-          <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 2">
-          <h3>PUSH PRIB KAEL</h3>
-          <p>Rp15.000</p>
-<button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834'">Beli</button>
-        </div>
-        <div class="product-card">
-          <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 3">
-          <h3>SIMPLE STORE KAEL</h3>
-          <p>Rp15.000</p>
-<button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834'">Beli</button>
-        </div>
-        <div class="product-card">
-          <img src="https://i.postimg.cc/ZnPDDj1w/Kaelofficial.jpg" alt="Produk 4">
-          <h3>KAEL CPANEL V1</h3>
-          <p>Rp15.000</p>
-<button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834'">Beli</button>
-        </div>
-         </div>
-        </div>
-    <div class="gallery" id="products">
-      <h2>OTHER PRODUCTS</h2>
-      <div class="gallery-grid">
-        <div class="product-card">
-          <img src="https://i.postimg.cc/cHHntb4Y/Kaelofficial.jpg" alt="Product 10">
-          <h3>JASA INSTALL PANEL</h3>
-          <p>Rp10.000</p>
-          <button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834?=Bang+kael+mau+order+jasa+install+panel'">Beli</button>
-        </div>
-        <div class="product-card">
-          <img src="https://i.postimg.cc/d0nC1Yvw/Kaelofficial.jpg" alt="Product 11">
-          <h3>JASA RENAME SCRIPT</h3>
-          <p>Rp10.000</p>
-          <button class="btn-beli" onclick="window.location.href='https://wa.me/6282396700834?=Bang+kael+mau+order+jasa+rename+script'">Beli</button>
-        </div>
-      </div>
-    </div>
+    <footer>&copy; 2024 - Skyzopedia</footer>
   </div>
-
-<!-- Tombol WhatsApp -->
-  <div class="whatsapp-button" onclick="openWhatsApp()">
-    <i class="fab fa-whatsapp"></i>
-  </div>
-
+  
+  <!-- Particles.js Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Fungsi untuk membuka WhatsApp
-    function openWhatsApp() {
-      const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
-      const message = "Halo! Saya ingin bertanya."; // Ganti dengan pesan default
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100
+          }
+        }
+      }
+    });
   </script>
-
-  <!-- Ikon Kontak -->
-  <div class="contact-icons" id="contact">
-    <a href="https://wa.me/6282396700834" target="_blank">
-      <i class="fab fa-whatsapp"></i> <!-- Ikon WhatsApp -->
-    </a>
-    <a href="https://instagram.com/kaelshopreal" target="_blank">
-      <i class="fab fa-instagram"></i> <!-- Ikon Instagram -->
-    </a>
-    <a href="mailto:kaelofficial16@gmail.com">
-      <i class="fas fa-envelope"></i> <!-- Ikon Email -->
-    </a>
-  </div>
-
-  <footer>
-    &copy; copyright by kael official 2024</a>
-  </footer>
 </body>
 </html>
