@@ -6,174 +6,93 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>Skyzopedia</title>
+  <title>Halaman Utama</title>
   <style>
-    /* Global Styles */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      height: 100vh;
       background: #000;
-      color: white;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
-    #particles-js {
-      position: fixed;
+    .container {
+      text-align: center;
+    }
+    .menu {
+      margin: 20px;
+    }
+    .menu a {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      width: 200px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .menu a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      color: #ccc;
+      font-size: 12px;
+    }
+    canvas {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-    h1 {
-      font-size: 24px;
-      margin: 5px 0;
-    }
-    p {
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-    .menu {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      width: 90%;
-      max-width: 300px;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 12px;
-      opacity: 0.6;
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
+  <canvas id="background"></canvas>
   <div class="container">
-    <img src="https://via.placeholder.com/120" alt="Profile" class="profile-img">
-    <h1>Skyzopedia</h1>
-    <p>Creator WhatsApp Bot & Web Developer</p>
+    <h1>Selamat Datang</h1>
+    <p>Silakan pilih menu di bawah ini:</p>
     <div class="menu">
-      <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
-      <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
-      <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
-      <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
+      <a href="grup-whatsapp.html">Grup WhatsApp</a>
     </div>
-    <div class="footer">© 2024 - Skyzopedia</div>
+    <footer>© 2025 - Website Anda</footer>
   </div>
-
-  <!-- Tambahkan Script particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "grab"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          }
-        },
-        "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200
-          },
-          "push": {
-            "particles_nb": 4
-          }
-        }
-      },
-      "retina_detect": true
-    });
+    const canvas = document.getElementById('background');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function drawBackground() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < 50; i++) {
+        ctx.beginPath();
+        ctx.arc(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height,
+          Math.random() * 3,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+      }
+    }
+    drawBackground();
   </script>
 </body>
 </html>
