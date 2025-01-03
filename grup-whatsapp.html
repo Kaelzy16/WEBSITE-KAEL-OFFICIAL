@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grup WhatsApp</title>
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #000;
       color: white;
-      text-align: center;
+      overflow: hidden;
     }
     #particles-js {
       position: fixed;
@@ -21,47 +22,45 @@
       z-index: -1;
     }
     .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
       padding: 20px;
+      box-sizing: border-box;
     }
     h1 {
       font-size: 24px;
       margin-bottom: 20px;
     }
-    .group-card {
+    .group-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .group-item {
+      display: block;
       background: rgba(255, 255, 255, 0.1);
-      margin: 10px auto;
-      padding: 10px;
-      border-radius: 8px;
-      max-width: 300px;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    .group-card a {
-      display: block;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      margin: 10px auto;
       border-radius: 5px;
+      font-size: 16px;
       transition: background 0.3s;
     }
-    .group-card a:hover {
+    .group-item:hover {
       background: rgba(255, 255, 255, 0.3);
     }
-    .back-btn {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
+    .footer {
       margin-top: 20px;
-      transition: background 0.3s;
-    }
-    .back-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
+      font-size: 12px;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -69,21 +68,16 @@
   <div id="particles-js"></div>
   <div class="container">
     <h1>Daftar Grup WhatsApp</h1>
-    <div class="group-card">
-      <p>Grup 1</p>
-      <a href="https://chat.whatsapp.com/invite1" target="_blank">Gabung</a>
+    <div class="group-list">
+      <a href="https://chat.whatsapp.com/example1" target="_blank" class="group-item">Grup WhatsApp 1</a>
+      <a href="https://chat.whatsapp.com/example2" target="_blank" class="group-item">Grup WhatsApp 2</a>
+      <a href="https://chat.whatsapp.com/example3" target="_blank" class="group-item">Grup WhatsApp 3</a>
+      <a href="https://chat.whatsapp.com/example4" target="_blank" class="group-item">Grup WhatsApp 4</a>
     </div>
-    <div class="group-card">
-      <p>Grup 2</p>
-      <a href="https://chat.whatsapp.com/invite2" target="_blank">Gabung</a>
-    </div>
-    <div class="group-card">
-      <p>Grup 3</p>
-      <a href="https://chat.whatsapp.com/invite3" target="_blank">Gabung</a>
-    </div>
-    <a href="index.html" class="back-btn">Kembali</a>
+    <div class="footer">© 2024 - Skyzopedia</div>
   </div>
 
+  <!-- Tambahkan Script particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS('particles-js', {
@@ -98,6 +92,21 @@
         "color": {
           "value": "#ffffff"
         },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
         "line_linked": {
           "enable": true,
           "distance": 150,
@@ -107,18 +116,48 @@
         },
         "move": {
           "enable": true,
-          "speed": 6,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
           "out_mode": "out"
         }
       },
       "interactivity": {
+        "detect_on": "canvas",
         "events": {
           "onhover": {
             "enable": true,
-            "mode": "repulse"
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200
+          },
+          "push": {
+            "particles_nb": 4
           }
         }
-      }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
