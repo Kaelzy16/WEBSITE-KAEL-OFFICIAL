@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Skyzopedia</title>
+  <title>Skyzopedia</title>
   <style>
     body {
       margin: 0;
@@ -11,7 +11,6 @@
       background: #000;
       color: white;
       text-align: center;
-      padding: 20px;
     }
     #particles-js {
       position: fixed;
@@ -21,30 +20,33 @@
       height: 100%;
       z-index: -1;
     }
+    .container {
+      padding: 20px;
+    }
     .profile-img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      margin-bottom: 20px;
+      margin: 20px auto;
     }
     h1 {
-      margin-bottom: 10px;
       font-size: 24px;
+      margin: 10px 0;
     }
     p {
-      font-size: 16px;
-      margin-bottom: 20px;
+      font-size: 14px;
+      margin: 10px 0 20px;
     }
     .btn {
-      display: inline-block;
+      display: block;
       background: rgba(255, 255, 255, 0.1);
       color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 10px auto;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 14px;
-      margin: 10px;
+      max-width: 200px;
       transition: background 0.3s;
     }
     .btn:hover {
@@ -54,16 +56,16 @@
 </head>
 <body>
   <div id="particles-js"></div>
-  <img src="https://via.placeholder.com/100" alt="Profile" class="profile-img">
-  <h1>Skyzopedia</h1>
-  <p>Creator WhatsApp Bot & Web Developer</p>
-  
-  <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
-  <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
-  <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
-  <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
+  <div class="container">
+    <img src="https://via.placeholder.com/100" alt="Profile" class="profile-img">
+    <h1>Skyzopedia</h1>
+    <p>Creator WhatsApp Bot & Web Developer</p>
+    <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
+    <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
+    <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
+    <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
+  </div>
 
-  <!-- Particles.js Script -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS('particles-js', {

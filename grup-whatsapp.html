@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kumpulan Grup WhatsApp</title>
+  <title>Grup WhatsApp</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #000;
       color: white;
-      padding: 20px;
+      text-align: center;
     }
     #particles-js {
       position: fixed;
@@ -21,48 +21,43 @@
       z-index: -1;
     }
     .container {
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
+      padding: 20px;
     }
     h1 {
+      font-size: 24px;
       margin-bottom: 20px;
-      font-size: 28px;
     }
-    .card {
+    .group-card {
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 10px auto;
+      padding: 10px;
       border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 15px;
+      max-width: 300px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
-    .card p {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    .card button {
+    .group-card a {
+      display: block;
       background: rgba(255, 255, 255, 0.2);
       color: white;
-      border: none;
+      text-decoration: none;
+      padding: 10px;
+      margin: 10px auto;
       border-radius: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 14px;
       transition: background 0.3s;
     }
-    .card button:hover {
+    .group-card a:hover {
       background: rgba(255, 255, 255, 0.3);
     }
     .back-btn {
       display: inline-block;
-      margin-top: 20px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
       text-decoration: none;
-      font-size: 14px;
+      padding: 10px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      margin-top: 20px;
       transition: background 0.3s;
     }
     .back-btn:hover {
@@ -73,32 +68,22 @@
 <body>
   <div id="particles-js"></div>
   <div class="container">
-    <h1>Kumpulan Grup WhatsApp</h1>
-
-    <!-- Grup 1 -->
-    <div class="card">
-      <p>Grup Diskusi 1</p>
-      <button onclick="window.open('https://chat.whatsapp.com/invite1', '_blank')">Gabung Grup</button>
+    <h1>Daftar Grup WhatsApp</h1>
+    <div class="group-card">
+      <p>Grup 1</p>
+      <a href="https://chat.whatsapp.com/invite1" target="_blank">Gabung</a>
     </div>
-    <div class="card">
-      <p>Grup Diskusi 2</p>
-      <button onclick="window.open('https://chat.whatsapp.com/invite2', '_blank')">Gabung Grup</button>
+    <div class="group-card">
+      <p>Grup 2</p>
+      <a href="https://chat.whatsapp.com/invite2" target="_blank">Gabung</a>
     </div>
-
-    <!-- Grup 2 -->
-    <div class="card">
-      <p>Grup Komunitas 1</p>
-      <button onclick="window.open('https://chat.whatsapp.com/invite3', '_blank')">Gabung Grup</button>
+    <div class="group-card">
+      <p>Grup 3</p>
+      <a href="https://chat.whatsapp.com/invite3" target="_blank">Gabung</a>
     </div>
-    <div class="card">
-      <p>Grup Komunitas 2</p>
-      <button onclick="window.open('https://chat.whatsapp.com/invite4', '_blank')">Gabung Grup</button>
-    </div>
-
-    <a href="index.html" class="back-btn">Kembali ke Home</a>
+    <a href="index.html" class="back-btn">Kembali</a>
   </div>
 
-  <!-- Particles.js Script -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS('particles-js', {
