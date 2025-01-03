@@ -26,10 +26,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      text-align: center;
       padding: 20px;
-      box-sizing: border-box;
+      height: 100vh;
+      text-align: center;
     }
     h1 {
       font-size: 24px;
@@ -38,23 +37,25 @@
     .group-list {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      width: 100%;
+      align-items: center;
+      gap: 10px;
+      width: 90%;
       max-width: 400px;
     }
-    .group-item {
+    .group {
       display: block;
+      width: 100%;
       background: rgba(255, 255, 255, 0.1);
       color: white;
       text-decoration: none;
-      padding: 15px;
+      padding: 15px 0;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
       font-size: 16px;
       transition: background 0.3s;
     }
-    .group-item:hover {
+    .group:hover {
       background: rgba(255, 255, 255, 0.3);
     }
     .footer {
@@ -69,10 +70,10 @@
   <div class="container">
     <h1>Daftar Grup WhatsApp</h1>
     <div class="group-list">
-      <a href="https://chat.whatsapp.com/example1" target="_blank" class="group-item">Grup WhatsApp 1</a>
-      <a href="https://chat.whatsapp.com/example2" target="_blank" class="group-item">Grup WhatsApp 2</a>
-      <a href="https://chat.whatsapp.com/example3" target="_blank" class="group-item">Grup WhatsApp 3</a>
-      <a href="https://chat.whatsapp.com/example4" target="_blank" class="group-item">Grup WhatsApp 4</a>
+      <a href="https://chat.whatsapp.com/invite1" target="_blank" class="group">Grup 1</a>
+      <a href="https://chat.whatsapp.com/invite2" target="_blank" class="group">Grup 2</a>
+      <a href="https://chat.whatsapp.com/invite3" target="_blank" class="group">Grup 3</a>
+      <a href="https://chat.whatsapp.com/invite4" target="_blank" class="group">Grup 4</a>
     </div>
     <div class="footer">© 2024 - Skyzopedia</div>
   </div>
