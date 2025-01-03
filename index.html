@@ -34,6 +34,7 @@
     /* Content */
     .container {
       text-align: center;
+      width: 80%;
     }
     .avatar {
       width: 100px;
@@ -50,24 +51,36 @@
       font-size: 16px;
       margin: 10px 0 30px;
     }
-    .buttons a {
+    .buttons button {
       display: block;
       margin: 10px auto;
       padding: 10px 20px;
       width: 200px;
-      text-decoration: none;
+      font-size: 16px;
       color: white;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
-      transition: background 0.3s;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
-    .buttons a:hover {
+    .buttons button:hover {
       background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
     }
     footer {
       margin-top: 20px;
       font-size: 14px;
+    }
+    /* Slide Section */
+    .slide {
+      display: none;
+      margin-top: 20px;
+    }
+    .slide img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -78,10 +91,14 @@
     <h1>Skyzopedia</h1>
     <p>Creator WhatsApp Bot & Web Developer</p>
     <div class="buttons">
-      <a href="#">Rest API</a>
-      <a href="#">YouTube</a>
-      <a href="#">Contact</a>
-      <a href="#">Channel WhatsApp</a>
+      <button onclick="showSlide()">Rest API</button>
+      <button onclick="window.open('https://youtube.com', '_blank')">YouTube</button>
+      <button onclick="window.open('https://wa.me/6281234567890', '_blank')">Contact</button>
+      <button onclick="window.open('https://chat.whatsapp.com/yourchannel', '_blank')">Channel WhatsApp</button>
+    </div>
+    <div class="slide" id="slide">
+      <img src="https://via.placeholder.com/400x300" alt="Slide Image">
+      <p style="margin-top: 10px;">Ini adalah slide tentang Rest API.</p>
     </div>
     <footer>&copy; 2024 - Skyzopedia</footer>
   </div>
@@ -110,10 +127,7 @@
         },
         "opacity": {
           "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false
-          }
+          "random": false
         },
         "size": {
           "value": 3,
@@ -154,6 +168,12 @@
         }
       }
     });
+
+    // Function to show slide
+    function showSlide() {
+      const slide = document.getElementById('slide');
+      slide.style.display = slide.style.display === 'none' || slide.style.display === '' ? 'block' : 'none';
+    }
   </script>
 </body>
 </html>
