@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skyzopedia</title>
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #000;
       color: white;
-      text-align: center;
+      overflow: hidden;
     }
     #particles-js {
       position: fixed;
@@ -21,51 +22,74 @@
       z-index: -1;
     }
     .container {
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
     }
     .profile-img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin: 20px auto;
+      margin-bottom: 15px;
     }
     h1 {
       font-size: 24px;
-      margin: 10px 0;
+      margin: 5px 0;
     }
     p {
       font-size: 14px;
-      margin: 10px 0 20px;
+      margin-bottom: 30px;
+    }
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 90%;
+      max-width: 300px;
     }
     .btn {
       display: block;
+      width: 100%;
       background: rgba(255, 255, 255, 0.1);
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
-      margin: 10px auto;
+      padding: 15px 0;
+      text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
-      max-width: 200px;
+      font-size: 16px;
       transition: background 0.3s;
     }
     .btn:hover {
       background: rgba(255, 255, 255, 0.3);
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
   <div class="container">
-    <img src="https://via.placeholder.com/100" alt="Profile" class="profile-img">
+    <img src="https://via.placeholder.com/120" alt="Profile" class="profile-img">
     <h1>Skyzopedia</h1>
     <p>Creator WhatsApp Bot & Web Developer</p>
-    <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
-    <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
-    <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
-    <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
+    <div class="menu">
+      <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
+      <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
+      <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
+      <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
+    </div>
+    <div class="footer">© 2024 - Skyzopedia</div>
   </div>
 
+  <!-- Tambahkan Script particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS('particles-js', {
@@ -80,6 +104,21 @@
         "color": {
           "value": "#ffffff"
         },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
         "line_linked": {
           "enable": true,
           "distance": 150,
@@ -89,18 +128,48 @@
         },
         "move": {
           "enable": true,
-          "speed": 6,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
           "out_mode": "out"
         }
       },
       "interactivity": {
+        "detect_on": "canvas",
         "events": {
           "onhover": {
             "enable": true,
-            "mode": "repulse"
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200
+          },
+          "push": {
+            "particles_nb": 4
           }
         }
-      }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
