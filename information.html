@@ -15,40 +15,6 @@
   position: relative;
 }
 
-.background-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(20,20,20,1) 100%);
-  z-index: -1;
-  overflow: hidden;
-}
-
-.background-animation::before {
-  content: '';
-  position: absolute;
-  width: 150%;
-  height: 150%;
-  top: -50%;
-  left: -50%;
-  background: repeating-linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.1) 0,
-    rgba(255, 255, 255, 0.1) 5px,
-    transparent 5px,
-    transparent 10px
-  );
-  transform: rotate(45deg);
-  animation: move 5s linear infinite;
-}
-
-@keyframes move {
-  0% { transform: translate(0, 0) rotate(45deg); }
-  100% { transform: translate(50%, 50%) rotate(45deg); }
-}
-
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -92,7 +58,7 @@
 </style>
 </head>
 <body>
-  <div class="background-animation"></div>
+  <div id="particles-js"></div>
   
   <div class="container">
     <div class="content-box">
@@ -112,5 +78,88 @@
     </div>
   </div>
 
+  <!-- Tambahkan Script particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 </body>
 </html>
