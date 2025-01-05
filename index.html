@@ -1,176 +1,49 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skyzopedia</title>
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: white;
-      overflow: hidden;
-    }
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-    h1 {
-      font-size: 24px;
-      margin: 5px 0;
-    }
-    p {
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-    .menu {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      width: 90%;
-      max-width: 300px;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 12px;
-      opacity: 0.6;
-    }
-  </style>
-</head>
-<body>
-  <div id="particles-js"></div>
-  <div class="container">
-    <img src="https://via.placeholder.com/120" alt="Profile" class="profile-img">
-    <h1>Skyzopedia</h1>
-    <p>Creator WhatsApp Bot & Web Developer</p>
-    <div class="menu">
-      <a href="grup-whatsapp.html" class="btn">Grup WhatsApp</a>
-      <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
-      <a href="https://wa.me/your_contact_number" target="_blank" class="btn">Contact WhatsApp</a>
-      <a href="https://chat.whatsapp.com/channel_invite" target="_blank" class="btn">Channel WhatsApp</a>
-    </div>
-    <div class="footer">© 2024 - Skyzopedia</div>
-  </div>
-
-  <!-- Tambahkan Script particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "grab"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          }
-        },
-        "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200
-          },
-          "push": {
-            "particles_nb": 4
-          }
-        }
-      },
-      "retina_detect": true
-    });
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Skyzopedia
+  </title>
+  <script src="https://cdn.tailwindcss.com">
   </script>
-</body>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            background-color: #000;
+            background-image: url('https://placehold.co/800x600/000000/FFFFFF/png?text=Background+with+geometric+lines');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+  </style>
+ </head>
+ <body class="flex flex-col items-center justify-center min-h-screen text-white">
+  <div class="text-center">
+   <img alt="Profile picture of a cat playing with a game controller" class="w-24 h-24 rounded-full mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/2q0EMBZAe5UkXSg5cmo8KXXyBt6xmWweumsaJcxLg8fwNzDoA.jpg" width="100"/>
+   <h1 class="text-2xl font-bold">
+    Skyzopedia
+   </h1>
+   <p class="text-gray-400 mb-6">
+    Creator WhatsApp Bot &amp; Web Developer
+   </p>
+   <div class="space-y-4">
+    <a class="block w-64 py-2 bg-gray-800 rounded-lg text-center" href="#">
+     Rest API
+    </a>
+    <a class="block w-64 py-2 bg-gray-800 rounded-lg text-center" href="#">
+     Youtube
+    </a>
+    <a class="block w-64 py-2 bg-gray-800 rounded-lg text-center" href="#">
+     Contact
+    </a>
+    <a class="block w-64 py-2 bg-gray-800 rounded-lg text-center" href="#">
+     Channel WhatsApp
+    </a>
+   </div>
+  </div>
+  <footer class="mt-8 text-gray-400">
+   © 2024 - Skyzopedia
+  </footer>
+ </body>
 </html>
