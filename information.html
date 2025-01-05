@@ -3,85 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skyzopedia</title>
+  <title>Informasi dengan Particles.js</title>
   <style>
+    /* CSS */
     body {
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  position: relative;
-}
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      color: #fff;
+    }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Di belakang konten utama */
+      background-color: #000; /* Warna dasar jika partikel tidak dimuat */
+    }
 
-.content-box {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+    .main-content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
 
-.content-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.5);
-}
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
-.content-box img {
-  max-width: 100%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+    .content-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-.content-box h2 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #f0f0f0;
-}
+    .content-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.5);
+    }
 
-.content-box p {
-  font-size: 14px;
-  color: #ccc;
-}
-</style>
+    .content-box img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .content-box h2 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #f0f0f0;
+    }
+
+    .content-box p {
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
+  <!-- Div untuk animasi particles.js -->
   <div id="particles-js"></div>
   
-  <div class="container">
-    <div class="content-box">
-      <h2>Informasi 1</h2>
-      <img src="https://via.placeholder.com/300" alt="Gambar 1">
-      <p>Ini adalah rangkuman informasi pertama. Anda bisa menambahkan detail di sini.</p>
-    </div>
-    <div class="content-box">
-      <h2>Informasi 2</h2>
-      <img src="https://via.placeholder.com/300" alt="Gambar 2">
-      <p>Ini adalah rangkuman informasi kedua. Anda bisa menambahkan detail di sini.</p>
-    </div>
-    <div class="content-box">
-      <h2>Informasi 3</h2>
-      <img src="https://via.placeholder.com/300" alt="Gambar 3">
-      <p>Ini adalah rangkuman informasi ketiga. Anda bisa menambahkan detail di sini.</p>
+  <!-- Konten utama -->
+  <div class="main-content">
+    <div class="container">
+      <div class="content-box">
+        <h2>Informasi 1</h2>
+        <img src="https://via.placeholder.com/300" alt="Gambar 1">
+        <p>Ini adalah rangkuman informasi pertama. Anda bisa menambahkan detail di sini.</p>
+      </div>
+      <div class="content-box">
+        <h2>Informasi 2</h2>
+        <img src="https://via.placeholder.com/300" alt="Gambar 2">
+        <p>Ini adalah rangkuman informasi kedua. Anda bisa menambahkan detail di sini.</p>
+      </div>
+      <div class="content-box">
+        <h2>Informasi 3</h2>
+        <img src="https://via.placeholder.com/300" alt="Gambar 3">
+        <p>Ini adalah rangkuman informasi ketiga. Anda bisa menambahkan detail di sini.</p>
+      </div>
     </div>
   </div>
-
-  <!-- Tambahkan Script particles.js -->
+  
+  <!-- Particles.js CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Konfigurasi Particles.js -->
   <script>
-    particlesJS('particles-js', {
+    particlesJS("particles-js", {
       "particles": {
         "number": {
           "value": 100,
@@ -98,15 +117,30 @@
           "stroke": {
             "width": 0,
             "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
           }
         },
         "opacity": {
           "value": 0.5,
-          "random": false
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
         },
         "size": {
           "value": 3,
-          "random": true
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
         },
         "line_linked": {
           "enable": true,
@@ -117,11 +151,17 @@
         },
         "move": {
           "enable": true,
-          "speed": 2,
+          "speed": 6,
           "direction": "none",
           "random": false,
           "straight": false,
-          "out_mode": "out"
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
         }
       },
       "interactivity": {
@@ -134,7 +174,8 @@
           "onclick": {
             "enable": true,
             "mode": "push"
-          }
+          },
+          "resize": true
         },
         "modes": {
           "grab": {
@@ -151,10 +192,14 @@
             "speed": 3
           },
           "repulse": {
-            "distance": 200
+            "distance": 200,
+            "duration": 0.4
           },
           "push": {
             "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
           }
         }
       },
