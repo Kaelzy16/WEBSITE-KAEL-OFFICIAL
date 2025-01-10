@@ -72,6 +72,28 @@
     }
     .btn:hover {
       background: rgba(255, 255, 255, 0.3);
+      
+             button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 10px auto;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        .social-buttons {
+            display: none; /* Disembunyikan awalnya */
+        }
+        .social-buttons button {
+            width: 180px;
+        }
+      
     }
     .footer {
       margin-top: 20px;
@@ -91,6 +113,8 @@
       <a href="produk.html" class="btn">Produk</a>
       <a href="information.html" class="btn">Real Owner</a>
       <a href="grup-whatsapp.html" class="btn">Grup Rekomenasi</a>
+          <button id="socialMediaButton">Sosial Media</button>
+    <div class="social-buttons" id="socialButtons">
       <a href="https://youtube.com/@kaelshopreal" target="_blank" class="btn">YouTube</a>
       <a href="https://tiktok.com/@kaelshopreal" target="_blank" class="btn">TikTok</a>
       <a href="https://instagram.com/kaelshopreal" target="_blank" class="btn">Instagram</a>
