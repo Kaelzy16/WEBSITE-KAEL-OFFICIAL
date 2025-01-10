@@ -24,9 +24,30 @@
             margin-bottom: 20px;
         }
 
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
         .produk-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* Dua kolom */
             gap: 20px;
         }
 
@@ -40,7 +61,7 @@
 
         .produk-item img {
             width: 100%;
-            max-width: 300px;
+            max-width: 250px;
             height: auto;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -68,33 +89,69 @@
         .produk-item a:hover {
             background-color: #0056b3;
         }
+
+        @media (max-width: 600px) {
+            .produk-grid {
+                grid-template-columns: repeat(2, 1fr); /* Tetap dua kolom di phone */
+            }
+
+            .search-bar input {
+                width: 90%;
+            }
+        }
     </style>
+    <script>
+        function searchProduk() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const produkItems = document.querySelectorAll('.produk-item');
+
+            produkItems.forEach(item => {
+                const produkTitle = item.querySelector('h2').innerText.toLowerCase();
+                if (produkTitle.includes(searchInput)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Daftar Produk</h1>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Cari produk..."
+                onkeyup="searchProduk()"
+            >
+        </div>
+
+        <!-- Produk Grid -->
         <div class="produk-grid">
             <div class="produk-item">
                 <h2>Produk 1</h2>
-                <img src="https://via.placeholder.com/300" alt="Produk 1">
+                <img src="https://via.placeholder.com/250" alt="Produk 1">
                 <p>Deskripsi singkat produk 1.</p>
                 <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Halo,%20saya%20ingin%20membeli%20Produk%201" target="_blank">Beli Sekarang</a>
             </div>
             <div class="produk-item">
                 <h2>Produk 2</h2>
-                <img src="https://via.placeholder.com/300" alt="Produk 2">
+                <img src="https://via.placeholder.com/250" alt="Produk 2">
                 <p>Deskripsi singkat produk 2.</p>
                 <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Halo,%20saya%20ingin%20membeli%20Produk%202" target="_blank">Beli Sekarang</a>
             </div>
             <div class="produk-item">
                 <h2>Produk 3</h2>
-                <img src="https://via.placeholder.com/300" alt="Produk 3">
+                <img src="https://via.placeholder.com/250" alt="Produk 3">
                 <p>Deskripsi singkat produk 3.</p>
                 <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Halo,%20saya%20ingin%20membeli%20Produk%203" target="_blank">Beli Sekarang</a>
             </div>
             <div class="produk-item">
                 <h2>Produk 4</h2>
-                <img src="https://via.placeholder.com/300" alt="Produk 4">
+                <img src="https://via.placeholder.com/250" alt="Produk 4">
                 <p>Deskripsi singkat produk 4.</p>
                 <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Halo,%20saya%20ingin%20membeli%20Produk%204" target="_blank">Beli Sekarang</a>
             </div>
